@@ -9,6 +9,7 @@ namespace BankiSzolgaltatasok
 	public class HitelSzamla : Szamla
 	{
 		private int hitelKeret;
+		public int hitelKeretx { get => hitelKeret; }
 
 		public HitelSzamla(Tulajdonos tulajdonos, int hitelKeret) : base(tulajdonos)
 		{
@@ -16,9 +17,15 @@ namespace BankiSzolgaltatasok
 		}
 		public override bool Kivesz(int osszeg)
 		{
-				return this.hitelKeret >= osszeg;
+            if (Math.Abs(this.aktualisEgyenleg-osszeg)<=this.hitelKeret)
+            {
+				this.aktualisEgyenleg -= osszeg;
+				return true;
+            }
+            else
+            {
+				return false;
+            }
 		}
-
-		public int HitelKeret { get => hitelKeret; }
 	}
 }

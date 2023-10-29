@@ -19,12 +19,13 @@ namespace BankiSzolgaltatasok
 		public double Kamat { get => kamat; set => kamat = value; }
 		public void KamatJovairas()
 		{
-			aktualisEgyenleg
+			this.aktualisEgyenleg=Convert.ToInt32(this.aktualisEgyenleg*this.kamat);
 		}
-		public bool Kivesz(int osszeg)
+		public override bool Kivesz(int osszeg)
 		{
-			if (osszeg >= 0)
+			if ((this.aktualisEgyenleg-osszeg) >= 0)
 			{
+				this.aktualisEgyenleg = this.aktualisEgyenleg - osszeg;
 				return true;
 			}
 			else{

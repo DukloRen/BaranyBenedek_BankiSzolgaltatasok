@@ -9,6 +9,7 @@ namespace BankiSzolgaltatasok
 	public abstract class Szamla : BankiSzolgaltatas
 	{
 		protected int aktualisEgyenleg;
+		public int aktualisEgyenlegx { get => aktualisEgyenleg; }
 
 		public Szamla(Tulajdonos tulajdonos) : base (tulajdonos)
 		{
@@ -16,13 +17,12 @@ namespace BankiSzolgaltatasok
 		}
 		public void Befizet(int osszeg)
 		{
-			aktualisEgyenleg += osszeg;
+			this.aktualisEgyenleg += osszeg;
 		}
 		public abstract bool Kivesz(int osszeg);
 		public Kartya UjKartya(string kartyaszam)
 		{
-
+			return new Kartya(this.Tulajdonos, this, kartyaszam);
 		}
-		public int AktualisEgyenleg { get => aktualisEgyenleg; }
 	}
 }
